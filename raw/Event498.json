@@ -1,0 +1,68 @@
+{
+  "size": 20,
+  "opcodes": [
+    {
+      "op": "05",
+      "offset": 0,
+      "index": 0,
+      "value": [
+        "u16:97"
+      ]
+    },
+    {
+      "op": "22",
+      "offset": 3,
+      "index": 1,
+      "value": []
+    },
+    {
+      "op": "20",
+      "offset": 4,
+      "index": 2,
+      "value": [
+        "u8:1",
+        "u8:255"
+      ]
+    },
+    {
+      "op": "30",
+      "offset": 7,
+      "index": 3,
+      "value": [
+        "u8:0",
+        "u8:12"
+      ]
+    },
+    {
+      "op": "27",
+      "offset": 10,
+      "index": 4,
+      "value": [
+        "u16:566"
+      ]
+    },
+    {
+      "op": "30",
+      "offset": 13,
+      "index": 5,
+      "value": [
+        "u8:1",
+        "u8:12"
+      ]
+    },
+    {
+      "op": "42",
+      "offset": 16,
+      "index": 6,
+      "value": []
+    },
+    {
+      "op": "1A",
+      "offset": 17,
+      "index": 7,
+      "value": [
+        "u16:364"
+      ]
+    }
+  ]
+}

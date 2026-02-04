@@ -1,0 +1,102 @@
+{
+  "size": 32,
+  "opcodes": [
+    {
+      "op": "05",
+      "offset": 0,
+      "index": 0,
+      "value": [
+        "u16:46"
+      ]
+    },
+    {
+      "op": "22",
+      "offset": 3,
+      "index": 1,
+      "value": []
+    },
+    {
+      "op": "20",
+      "offset": 4,
+      "index": 2,
+      "value": [
+        "u8:2",
+        "u8:255"
+      ]
+    },
+    {
+      "op": "30",
+      "offset": 7,
+      "index": 3,
+      "value": [
+        "u8:0",
+        "u8:12"
+      ]
+    },
+    {
+      "op": "27",
+      "offset": 10,
+      "index": 4,
+      "value": [
+        "u16:28"
+      ]
+    },
+    {
+      "op": "2E",
+      "offset": 13,
+      "index": 5,
+      "value": [
+        "u8:5",
+        "u8:4",
+        "u8:2",
+        "u8:0"
+      ]
+    },
+    {
+      "op": "2E",
+      "offset": 18,
+      "index": 6,
+      "value": [
+        "u8:32",
+        "u8:2",
+        "u8:3",
+        "u8:0"
+      ]
+    },
+    {
+      "op": "30",
+      "offset": 23,
+      "index": 7,
+      "value": [
+        "u8:1",
+        "u8:12"
+      ]
+    },
+    {
+      "op": "42",
+      "offset": 26,
+      "index": 8,
+      "value": []
+    },
+    {
+      "op": "1A",
+      "offset": 27,
+      "index": 9,
+      "value": [
+        "u16:324"
+      ]
+    },
+    {
+      "op": "00",
+      "offset": 30,
+      "index": 10,
+      "value": []
+    },
+    {
+      "op": "00",
+      "offset": 31,
+      "index": 11,
+      "value": []
+    }
+  ]
+}

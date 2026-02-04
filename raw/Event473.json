@@ -1,0 +1,88 @@
+{
+  "size": 24,
+  "opcodes": [
+    {
+      "op": "05",
+      "offset": 0,
+      "index": 0,
+      "value": [
+        "u16:72"
+      ]
+    },
+    {
+      "op": "22",
+      "offset": 3,
+      "index": 1,
+      "value": []
+    },
+    {
+      "op": "20",
+      "offset": 4,
+      "index": 2,
+      "value": [
+        "u8:5",
+        "u8:255"
+      ]
+    },
+    {
+      "op": "30",
+      "offset": 7,
+      "index": 3,
+      "value": [
+        "u8:0",
+        "u8:12"
+      ]
+    },
+    {
+      "op": "28",
+      "offset": 10,
+      "index": 4,
+      "value": [
+        "u8:7",
+        "u8:9",
+        "u8:0"
+      ]
+    },
+    {
+      "op": "30",
+      "offset": 14,
+      "index": 5,
+      "value": [
+        "u8:1",
+        "u8:12"
+      ]
+    },
+    {
+      "op": "42",
+      "offset": 17,
+      "index": 6,
+      "value": []
+    },
+    {
+      "op": "1A",
+      "offset": 18,
+      "index": 7,
+      "value": [
+        "u16:353"
+      ]
+    },
+    {
+      "op": "00",
+      "offset": 21,
+      "index": 8,
+      "value": []
+    },
+    {
+      "op": "00",
+      "offset": 22,
+      "index": 9,
+      "value": []
+    },
+    {
+      "op": "00",
+      "offset": 23,
+      "index": 10,
+      "value": []
+    }
+  ]
+}

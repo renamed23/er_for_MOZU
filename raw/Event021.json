@@ -1,0 +1,135 @@
+{
+  "size": 72,
+  "opcodes": [
+    {
+      "op": "05",
+      "offset": 0,
+      "index": 0,
+      "value": [
+        "u16:134"
+      ]
+    },
+    {
+      "op": "44",
+      "offset": 3,
+      "index": 1,
+      "value": [
+        "　いや、止めておこう。",
+        "/W"
+      ]
+    },
+    {
+      "op": "44",
+      "offset": 17,
+      "index": 2,
+      "value": [
+        "　俺の計画には、あの女は関係ない。",
+        "/E"
+      ]
+    },
+    {
+      "op": "43",
+      "offset": 42,
+      "index": 3,
+      "value": []
+    },
+    {
+      "op": "34",
+      "offset": 43,
+      "index": 4,
+      "value": []
+    },
+    {
+      "op": "2F",
+      "offset": 44,
+      "index": 5,
+      "value": [
+        "u8:3",
+        "u8:0"
+      ]
+    },
+    {
+      "op": "3B",
+      "offset": 47,
+      "index": 6,
+      "value": [
+        "u8:0",
+        "u8:36",
+        "u8:4",
+        "u8:3"
+      ]
+    },
+    {
+      "op": "20",
+      "offset": 52,
+      "index": 7,
+      "value": [
+        "u8:9",
+        "u8:255"
+      ]
+    },
+    {
+      "op": "43",
+      "offset": 55,
+      "index": 8,
+      "value": []
+    },
+    {
+      "op": "34",
+      "offset": 56,
+      "index": 9,
+      "value": []
+    },
+    {
+      "op": "27",
+      "offset": 57,
+      "index": 10,
+      "value": [
+        "u16:6"
+      ]
+    },
+    {
+      "op": "3B",
+      "offset": 60,
+      "index": 11,
+      "value": [
+        "u8:1",
+        "u8:36",
+        "u8:4",
+        "u8:3"
+      ]
+    },
+    {
+      "op": "42",
+      "offset": 65,
+      "index": 12,
+      "value": []
+    },
+    {
+      "op": "1A",
+      "offset": 66,
+      "index": 13,
+      "value": [
+        "u16:21"
+      ]
+    },
+    {
+      "op": "00",
+      "offset": 69,
+      "index": 14,
+      "value": []
+    },
+    {
+      "op": "00",
+      "offset": 70,
+      "index": 15,
+      "value": []
+    },
+    {
+      "op": "00",
+      "offset": 71,
+      "index": 16,
+      "value": []
+    }
+  ]
+}
