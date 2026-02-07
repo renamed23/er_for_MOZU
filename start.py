@@ -117,7 +117,7 @@ def replace():
     # x64dbg_1337_patch,apply_1337_patch_on_attach,create_file_redirect
     # text_out_arg_c_is_bytes
     translate_lib.TextHookBuilder(
-        os.environ["TEXT_HOOK_PROJECT_PATH"]).build("natsu_natsu,window_hook,text_patch", panic="immediate-abort")
+        os.environ["TEXT_HOOK_PROJECT_PATH"]).build("natsu_natsu,window_hook,text_patch,iat_hook", panic="immediate-abort")
 
 
 def main():
