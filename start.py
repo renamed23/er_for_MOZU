@@ -20,7 +20,7 @@ config = {
     "ARG_PATCH_TYPE": {
         "value": "mozu",
         "type": "&str"
-    }
+    },
     # "ENUM_FONT_PROC_CHAR_SET": 128,
     # "ENUM_FONT_PROC_PITCH": 1,
     # "ENUM_FONT_PROC_OUT_PRECISION": 3,
@@ -32,6 +32,7 @@ config = {
     # "HIJACKED_DLL_PATH": "some_path/your_dll.dll",
     # "REDIRECTION_SRC_PATH": "B.FL4",
     # "REDIRECTION_TARGET_PATH": "FLOWERS_CHS.FL4",
+    "RESOURCE_PACK_NAME": "text_hook_resource_pack_MOZU_chs",
 }
 
 hook_lists = {
@@ -96,10 +97,11 @@ def replace():
     translate_lib.merge_directories(
         "asmed_pass", "generated/asmed", overwrite=True)
 
+    Path("generated/resource_pack").mkdir(parents=True, exist_ok=True)
     translate_lib.system(
-        f"{PACKER} pack -i generated/asmed -o generated/dist/Event_chs.grp")
+        f"{PACKER} pack -i generated/asmed -o generated/resource_pack/Event_chs.grp")
     translate_lib.system(
-        f"{PACKER} pack -i generated/system -o generated/dist/System_chs.grp")
+        f"{PACKER} pack -i generated/system -o generated/resource_pack/System_chs.grp")
 
     translate_lib.copy_path(
         "assets/raw_text", "generated/raw_text", overwrite=True)
@@ -117,7 +119,7 @@ def replace():
     # x64dbg_1337_patch,apply_1337_patch_on_attach,create_file_redirect
     # text_out_arg_c_is_bytes
     translate_lib.TextHookBuilder(
-        os.environ["TEXT_HOOK_PROJECT_PATH"]).build("natsu_natsu,window_hook,text_patch,iat_hook", panic="immediate-abort")
+        os.environ["TEXT_HOOK_PROJECT_PATH"]).build("natsu_natsu,window_hook,text_patch,iat_hook,resource_pack", panic="immediate-abort")
 
 
 def main():
