@@ -13,10 +13,6 @@ config = {
     "CHAR_FILTER": [
         # 0x40
     ],
-    "ARG_CHARS_SIZE": {
-        "value": 0,
-        "type": "usize"
-    },
     "ARG_PATCH_TYPE": {
         "value": "mozu",
         "type": "&str"
@@ -30,9 +26,9 @@ config = {
     #     "type": "&str",
     # },
     # "HIJACKED_DLL_PATH": "some_path/your_dll.dll",
-    # "REDIRECTION_SRC_PATH": "B.FL4",
-    # "REDIRECTION_TARGET_PATH": "FLOWERS_CHS.FL4",
-    "RESOURCE_PACK_NAME": "MOZU_chs",
+    "REDIRECTION_SRC_PATH": "Event.grp",
+    "REDIRECTION_TARGET_PATH": "..\\MOZU_chs.pak",
+    # "RESOURCE_PACK_NAME": "MOZU_chs",
 }
 
 hook_lists = {
@@ -54,7 +50,7 @@ features = [
     "window_hook",
     "text_patch",
     "iat_hook",
-    "resource_pack",
+    "create_file_redirect"
 ]
 
 PACKER = "python packer.py"
@@ -99,8 +95,6 @@ def replace():
 
     translate_lib.split_and_replace(ER)
 
-    translate_lib.copy_path(
-        "system", "generated/system", overwrite=True)
     translate_lib.system("python generate_new_system_file.py")
 
     translate_lib.copy_path(
@@ -112,11 +106,8 @@ def replace():
     translate_lib.merge_directories(
         "asmed_pass", "generated/asmed", overwrite=True)
 
-    Path("generated/resource_pack").mkdir(parents=True, exist_ok=True)
     translate_lib.system(
-        f"{PACKER} pack -i generated/asmed -o generated/resource_pack/Event_chs.grp")
-    translate_lib.system(
-        f"{PACKER} pack -i generated/system -o generated/resource_pack/System_chs.grp")
+        f"{PACKER} pack -i generated/asmed -o generated/dist/MOZU_chs.pak")
 
     translate_lib.copy_path(
         "assets/raw_text", "generated/raw_text", overwrite=True)

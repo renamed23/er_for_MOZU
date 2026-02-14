@@ -356,7 +356,7 @@ class TextHookBuilder:
 
         # 处理 raw 和 translated 目录
         patch_dirs = ["raw", "translated", "raw_text",
-                      "translated_text", "resource_pack"]
+                      "translated_text", "resource_pack", "misc"]
         for dir_name in patch_dirs:
             current_dir = self.generated_dir / dir_name
             target_dir = self.assets_dir / dir_name

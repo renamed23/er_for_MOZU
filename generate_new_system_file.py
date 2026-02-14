@@ -25,7 +25,7 @@ def get_ascii_free_units() -> int:
 
 
 JSON_PATH = Path("generated/translated.json")
-OUT_PATH = Path("generated/system/System002")
+OUT_PATH = Path("generated/misc/System002")
 
 # ASCII 区固定尾部
 ASCII_FIXED_TAIL = "　N0N1/S/W/C/EC0C1C2C3C4C5C6C7C8C9/R/R/R/R/R/R/R/R/R"
@@ -77,15 +77,6 @@ def main():
         for c in final_chars:
             out_bin.extend(c.encode("cp932"))
         f.write(out_bin)
-
-    bin_size = len(out_bin)
-
-    config = json.loads(
-        Path("generated/config.json").read_text(encoding="utf-8"))
-    config['ARG_CHARS_SIZE']['value'] = bin_size
-
-    with open("generated/config.json", "w", encoding='utf-8') as f:
-        json.dump(config, f, indent=2, ensure_ascii=False)
 
     print("完成")
     print(f"ASCII 可用区使用: {len(ascii_chars)}")

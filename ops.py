@@ -181,7 +181,7 @@ def disasm_mode(input_path: str, output_path: str):
 
 def asm_mode(input_path: str, output_path: str):
     """汇编模式：将JSON转换回二进制文件"""
-    read_from_system_file("generated/system/System002")
+    read_from_system_file("generated/misc/System002")
     files = collect_files(input_path, "json")
 
     for file in files:
