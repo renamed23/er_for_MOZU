@@ -32,7 +32,7 @@ config = {
     # "HIJACKED_DLL_PATH": "some_path/your_dll.dll",
     # "REDIRECTION_SRC_PATH": "B.FL4",
     # "REDIRECTION_TARGET_PATH": "FLOWERS_CHS.FL4",
-    "RESOURCE_PACK_NAME": "text_hook_resource_pack_MOZU_chs",
+    "RESOURCE_PACK_NAME": "MOZU_chs",
 }
 
 hook_lists = {
@@ -41,6 +41,21 @@ hook_lists = {
         # "PropertySheetA"
     ],
 }
+
+# patch,custom_font,debug_output,debug_text_mapping
+# default_impl,enum_font_families
+# export_default_dll_main,read_file_patch_impl
+# debug_file_impl,emulate_locale,override_window_title
+# dll_hijacking,export_patch_process_fn,text_patch,text_extracting
+# x64dbg_1337_patch,apply_1337_patch_on_attach,create_file_redirect
+# text_out_arg_c_is_bytes,iat_hook,resource_pack,resource_pack_embedding
+features = [
+    "natsu_natsu",
+    "window_hook",
+    "text_patch",
+    "iat_hook",
+    "resource_pack",
+]
 
 PACKER = "python packer.py"
 ASMER = "python ops.py"
@@ -111,15 +126,8 @@ def replace():
     translate_lib.merge_directories(
         "assets/dist_pass", "generated/dist", overwrite=True)
 
-    # patch,custom_font,debug_output,debug_text_mapping
-    # default_impl,enum_font_families
-    # export_default_dll_main,read_file_patch_impl
-    # debug_file_impl,emulate_locale,override_window_title
-    # dll_hijacking,export_patch_process_fn,text_patch,text_extracting
-    # x64dbg_1337_patch,apply_1337_patch_on_attach,create_file_redirect
-    # text_out_arg_c_is_bytes
     translate_lib.TextHookBuilder(
-        os.environ["TEXT_HOOK_PROJECT_PATH"]).build("natsu_natsu,window_hook,text_patch,iat_hook,resource_pack", panic="immediate-abort")
+        os.environ["TEXT_HOOK_PROJECT_PATH"]).build(features, panic="immediate-abort")
 
 
 def main():
