@@ -62,8 +62,8 @@ class JSONProcessor:
 
     def mapping_chars(self, item: Dict) -> None:
         char_map = {
-            'N0': '貴条',
-            'N1': '悠志郎',
+            'N0': '高木',
+            'N1': '龍太郎',
         }
 
         # 检查是否有需要处理的字段
