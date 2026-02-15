@@ -191,12 +191,11 @@ def asm_mode(input_path: str, output_path: str):
         new_blob = bytearray(b"".join([asm_one_op(op)
                              for op in json_data["opcodes"]]))
 
-        if len(new_blob) > json_data["size"]:
-            raise ValueError(
-                f"{file}: 长度必须小于等于原始文件的长度 ({len(new_blob)} > {json_data['size']})")
+        # 计算对齐所需的填充长度
+        padding_size = (4 - (len(new_blob) % 4)) % 4
 
-        new_blob.extend(
-            bytearray([0x00] * (json_data["size"] - len(new_blob))))
+        # 使用 extend 补 0
+        new_blob.extend(b'\x00' * padding_size)
 
         # 保存二进制文件
         rel_path = os.path.relpath(file, start=input_path)
