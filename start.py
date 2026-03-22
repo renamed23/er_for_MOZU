@@ -8,15 +8,19 @@ from utils_tools.libs import translate_lib
 config = {
     "FONT_FACE": "SimHei",  # (ＭＳ ゴシック, SimHei, SimSun)
     "CHAR_SET": 134,  # CP932=128, GBK=134
-    "FONT_FILTER": ["ＭＳ ゴシック", "俵俽 僑僔僢僋", "MS Gothic", "", "俵俽僑僔僢僋", "ＭＳゴシック"],
+    "FONT_FILTER": [
+        "ＭＳ ゴシック",
+        "俵俽 僑僔僢僋",
+        "MS Gothic",
+        "",
+        "俵俽僑僔僢僋",
+        "ＭＳゴシック",
+    ],
     # "FONT_FILTER": ["Microsoft YaHei", "Microsoft YaHei UI"],
     "CHAR_FILTER": [
         # 0x40
     ],
-    "ARG_PATCH_TYPE": {
-        "value": "mozu",
-        "type": "&str"
-    },
+    "ARG_PATCH_TYPE": {"value": "mozu", "type": "&str"},
     # "ENUM_FONT_PROC_CHAR_SET": 128,
     # "ENUM_FONT_PROC_PITCH": 1,
     # "ENUM_FONT_PROC_OUT_PRECISION": 3,
@@ -38,43 +42,48 @@ hook_lists = {
     ],
 }
 
-# patch,custom_font,debug_output,debug_text_mapping
-# default_impl,enum_font_families
-# export_default_dll_main,read_file_patch_impl
-# debug_file_impl,emulate_locale,override_window_title
-# dll_hijacking,export_patch_process_fn,text_patch,text_extracting
-# x64dbg_1337_patch,apply_1337_patch_on_attach,create_file_redirect
-# text_out_arg_c_is_bytes,iat_hook,resource_pack,resource_pack_embedding
+# bind_asset_virtualizer, bind_font_manager, bind_lifecycle_guard
+# bind_path_redirector, bind_text_mapping, bind_user_interface_patcher
+# bind_window_title_overrider, disable_forced_font, enable_debug_output
+# assume_text_out_arg_c_is_byte_len, enable_window_title_override
+# enable_text_mapping_debug, enable_x64dbg_1337_patch
+# auto_apply_1337_patch_on_attach, auto_apply_1337_patch_on_hwbp_hit
+# enable_attach_cleanup, enable_overlay_gl, enable_overlay
+# enable_gl_painter, enable_win_event_hook, enable_worker_thread
+# enable_hwbp_from_constants, enable_veh, enable_resource_pack
+# embed_resource_pack, enable_iat_hook, enable_text_patch
+# extract_text, enable_patch, extract_patch, enable_custom_font
+# export_default_dll_main, enable_locale_emulator, enable_delayed_attach
+# enable_dll_hijacking, export_hook_symbols, default_impl
 features = [
     "natsu_natsu",
-    "window_hook",
-    "text_patch",
-    "iat_hook",
-    "create_file_redirect"
+    "bind_user_interface_patcher",
+    "enable_iat_hook",
+    "bind_path_redirector",
 ]
 
 PACKER = "python packer.py"
 ASMER = "python ops.py"
 
 ER = [
-    ("python er.py extract --path raw --output raw.json",
-     "python er.py replace --path raw --text generated/translated.json")
+    (
+        "python er.py extract --path raw --output raw.json",
+        "python er.py replace --path raw --text generated/translated.json",
+    )
 ]
 
 
 def extract():
     print("执行提取...")
-    translate_lib.system(
-        f"{PACKER} unpack -i Event.grp -o asmed")
+    translate_lib.system(f"{PACKER} unpack -i Event.grp -o asmed")
     translate_lib.rename_file(
-        "asmed/Event001", "../asmed_pass/Event001", overwrite=True)
-    translate_lib.system(
-        f"{PACKER} unpack -i System.grp -o system")
+        "asmed/Event001", "../asmed_pass/Event001", overwrite=True
+    )
+    translate_lib.system(f"{PACKER} unpack -i System.grp -o system")
 
-    translate_lib.system(
-        f"{ASMER} disasm asmed raw")
+    translate_lib.system(f"{ASMER} disasm asmed raw")
     translate_lib.extract_and_concat(ER)
-    translate_lib.json_process('e', 'raw.json')
+    translate_lib.json_process("e", "raw.json")
 
 
 def replace():
@@ -85,11 +94,11 @@ def replace():
     translate_lib.generate_json(config, "config.json")
     translate_lib.generate_json(hook_lists, "hook_lists.json")
     translate_lib.copy_path(
-        "translated.json", "generated/translated.json", overwrite=True)
-    translate_lib.copy_path(
-        "raw.json", "generated/raw.json", overwrite=True)
+        "translated.json", "generated/translated.json", overwrite=True
+    )
+    translate_lib.copy_path("raw.json", "generated/raw.json", overwrite=True)
     translate_lib.json_check()
-    translate_lib.json_process('r', 'generated/translated.json')
+    translate_lib.json_process("r", "generated/translated.json")
     translate_lib.ascii_to_fullwidth()
     translate_lib.replace("cp932", False)  # cp932,shift_jis,gbk
 
@@ -97,28 +106,28 @@ def replace():
 
     translate_lib.system("python generate_new_system_file.py")
 
-    translate_lib.copy_path(
-        "translated", "generated/translated", overwrite=True)
+    translate_lib.copy_path("translated", "generated/translated", overwrite=True)
+
+    translate_lib.system(f"{ASMER} asm generated/translated generated/asmed")
+
+    translate_lib.merge_directories("asmed_pass", "generated/asmed", overwrite=True)
 
     translate_lib.system(
-        f"{ASMER} asm generated/translated generated/asmed")
+        f"{PACKER} pack -i generated/asmed -o generated/dist/MOZU_chs.pak"
+    )
+
+    translate_lib.copy_path("assets/raw_text", "generated/raw_text", overwrite=True)
+    translate_lib.copy_path(
+        "assets/translated_text", "generated/translated_text", overwrite=True
+    )
 
     translate_lib.merge_directories(
-        "asmed_pass", "generated/asmed", overwrite=True)
+        "assets/dist_pass", "generated/dist", overwrite=True
+    )
 
-    translate_lib.system(
-        f"{PACKER} pack -i generated/asmed -o generated/dist/MOZU_chs.pak")
-
-    translate_lib.copy_path(
-        "assets/raw_text", "generated/raw_text", overwrite=True)
-    translate_lib.copy_path(
-        "assets/translated_text", "generated/translated_text", overwrite=True)
-
-    translate_lib.merge_directories(
-        "assets/dist_pass", "generated/dist", overwrite=True)
-
-    translate_lib.TextHookBuilder(
-        os.environ["TEXT_HOOK_PROJECT_PATH"]).build(features, panic="immediate-abort")
+    translate_lib.TextHookBuilder(os.environ["TEXT_HOOK_PROJECT_PATH"]).build(
+        features, panic="immediate-abort"
+    )
 
 
 def main():
