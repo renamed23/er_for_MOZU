@@ -30,8 +30,6 @@ config = {
     #     "type": "&str",
     # },
     # "HIJACKED_DLL_PATH": "some_path/your_dll.dll",
-    "REDIRECTION_SRC_PATH": "Event.grp",
-    "REDIRECTION_TARGET_PATH": "..\\MOZU_chs.pak",
     # "RESOURCE_PACK_NAME": "MOZU_chs",
 }
 
@@ -41,6 +39,14 @@ hook_lists = {
         # "PropertySheetA"
     ],
 }
+
+vfs_rules = [
+    {
+        "source": "{exe_dir}/Group/Event.grp",
+        "target": "{exe_dir}/MOZU_chs.pak",
+        "mode": "fallback",  # force, fallback
+    }
+]
 
 # bind_asset_virtualizer, bind_font_manager, bind_lifecycle_guard
 # bind_path_redirector, bind_text_mapping, bind_user_interface_patcher
@@ -55,12 +61,7 @@ hook_lists = {
 # extract_text, enable_patch, extract_patch, enable_custom_font
 # export_default_dll_main, enable_locale_emulator, enable_delayed_attach
 # enable_dll_hijacking, export_hook_symbols, default_impl
-features = [
-    "natsu_natsu",
-    "bind_user_interface_patcher",
-    "enable_iat_hook",
-    "bind_path_redirector",
-]
+features = ["natsu_natsu", "bind_user_interface_patcher", "enable_iat_hook", "bind_vfs"]
 
 PACKER = "python packer.py"
 ASMER = "python ops.py"
@@ -93,6 +94,7 @@ def replace():
     # 你的 replace 逻辑
     translate_lib.generate_json(config, "config.json")
     translate_lib.generate_json(hook_lists, "hook_lists.json")
+    translate_lib.generate_json(vfs_rules, "vfs_rules.json")
     translate_lib.copy_path(
         "translated.json", "generated/translated.json", overwrite=True
     )
